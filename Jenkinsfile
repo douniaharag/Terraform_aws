@@ -8,7 +8,7 @@ pipeline {
     }
     agent any
     tools {
-        terraform 'Terraform' // Nom que vous avez donné dans la configuration globale
+        terraform 'terraform' // Nom que vous avez donné dans la configuration globale
     }
     stages {
         stage('checkout') {
