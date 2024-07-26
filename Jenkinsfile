@@ -8,14 +8,14 @@ pipeline {
     }
     agent any
     tools {
-        terraform 'terraform' // Nom que vous avez donné dans la configuration globale
+        terraform 'terraform' // Utilisez le nom configuré dans Global Tool Configuration
     }
     stages {
         stage('checkout') {
             steps {
                 script {
                     dir("terraform") {
-                        git 'https://github.com/douniaharag/Terraform_aws.git'
+                        git branch: 'main', url: 'https://github.com/douniaharag/Terraform_aws.git'
                     }
                 }
             }
