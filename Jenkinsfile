@@ -22,9 +22,11 @@ pipeline {
         }
         stage('Plan') {
             steps {
-                sh 'terraform init'
-                sh "terraform plan -out tfplan"
-                sh 'terraform show -no-color tfplan > tfplan.txt'
+                dir("terraform") {
+                    sh 'terraform init'
+                    sh "terraform plan -out tfplan"
+                    sh 'terraform show -no-color tfplan > tfplan.txt'
+                }
             }
         }
         stage('Approval') {
@@ -42,7 +44,9 @@ pipeline {
         }
         stage('Apply') {
             steps {
-                sh "terraform apply -input=false tfplan"
+                dir("terraform") {
+                    sh "terraform apply -input=false tfplan"
+                }
             }
         }
     }
